@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <?include Variables.wxi?>
+  <Product Id="$(var.ProductCode)" 
+           Name="$(var.ProductName)" 
+           Language="1033" 
+           Codepage="utf-8"
+           Version="1.0.0.0"
+           Manufacturer="$(var.ManufacturerName)" 
+           UpgradeCode="$(var.UpgradeCode)">
+    
+    <Package InstallerVersion="200" 
+             Compressed="yes" 
+             InstallScope="perMachine"
+             Platforms="$(var.Platform)" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="$(var.ProductName)" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ProductComponent" Guid="3e8ea35b-f3fd-4ef1-9311-b852be2e0596">
+        <File Id="$(var.ApplicationExe)" Source="$(var.SourcePath)\$(var.ApplicationExe)" KeyPath="yes" Checksum="yes"/>
+        <File Id="$(var.ApplicationExe).config" Source="$(var.SourcePath)\$(var.ApplicationExe).config" KeyPath="false" Checksum="yes"/>
+        <File Id="NLog.dll" Source="$(var.SourcePath)\NLog.dll" KeyPath="false" Checksum="yes"/>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <?define ProductName = "Chocolatey.AutoUpdater"?>
+  <?define ProductVersion = "1.0.0"?>
+  <?define ManufacturerName = "somafu sandbox"?>
+  <?define ManufacturerUrl = "http://sandbox.somafu.com"?>
+  <?define ApplicationExe = "Chocolatey.AutoUpdater.exe"?>
+  <?define ProductDescription = "application autoupdater"?>
+  <?define Platform = "x64"?>
+
+  <!--NEVER TOUCH!!!-->
+  <?define UpgradeCode="309b186b-6113-4c16-8da5-865e984630a8"?>
+  <?define AppDirName="$(var.ProductName)"?>
+  <?define SourcePath="..\..\out\"?>
+  <?define TargetPattern="[#$(var.ApplicationExe)]"?>
+  <?define RegistryKey = "SOFTWARE\$(var.ProductName)" ?>
+  <?define ProductCode = "*" ?>
+  <?if $(var.Platform) = x64 ?>
+    <?define Win64 = 'yes'?>
+  <?else?>
+    <?define Win64 = 'no'?>
+  <?endif?>
+</Include>
