@@ -17,18 +17,28 @@ namespace Chocolatey.AutoUpdater.Components
 
         public void Run()
         {
+            logger.Debug("Starting");
             var proc = new Process();
             proc.StartInfo = FillProcessStartInfo(GetArgments(), proc.StartInfo, _config.ChocolateyPath);
             try
             {
-                logger.Debug("Starting");
                 proc.Start();
-                logger.Debug("Finish");
+                proc.BeginErrorReadLine();
+                proc.ErrorDataReceived += ErrorDataReceived;
+                logger.Debug("Wait for Run");
+                proc.WaitForExit();
             }
             catch (Exception ex)
             {
                 logger.Error("", ex.ToString());
             }
+            logger.Debug("Finish");
+        }
+
+        private void ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(e.Data))
+                logger.Error("Error from chocolatey: ", e.Data);
         }
 
         private ProcessStartInfo FillProcessStartInfo(string args, ProcessStartInfo startInfo, string chocolateyPath)
@@ -38,6 +48,8 @@ namespace Chocolatey.AutoUpdater.Components
             startInfo.CreateNoWindow = true;
             startInfo.UseShellExecute = false;
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.RedirectStandardOutput = false;
+            startInfo.RedirectStandardError = true;
             return startInfo;
         }
 

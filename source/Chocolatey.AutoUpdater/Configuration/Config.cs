@@ -1,4 +1,6 @@
-﻿namespace Chocolatey.AutoUpdater.Configuration
+﻿using System;
+
+namespace Chocolatey.AutoUpdater.Configuration
 {
     public class Config : AppSettingBase<Config>
     {
@@ -6,6 +8,21 @@
 
         public string ChocolateyPath => AppSetting(x => x.ChocolateyPath);
 
-        public string ProxyUrl => AppSetting(x => x.ProxyUrl);
+        public string ProxyUrl
+        {
+            get
+            {
+
+                try
+                {
+                    return AppSetting(x => x.ProxyUrl);
+                }
+                catch (Exception)
+                {
+                    return string.Empty;
+                }
+
+            }
+        }
     }
 }
