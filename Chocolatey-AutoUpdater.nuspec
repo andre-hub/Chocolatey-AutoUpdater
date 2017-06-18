@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Chocolatey-AutoUpdater</id>
-    <title>Chocolatey-AutoUpdater</title>
+    <title>Chocolatey-AutoUpdater (unofficial)</title>
     <version>1.0.1</version>
     <authors>andre</authors>
     <owners>andre</owners>
@@ -13,10 +13,13 @@
     <docsUrl>https://github.com/andre-hub/Chocolatey-AutoUpdater/blob/master/README.md</docsUrl>
     <packageSourceUrl>https://github.com/andre-hub/Chocolatey-AutoUpdater/</packageSourceUrl>
     <summary>Chocolatey AutoUpdater NT-Service</summary>
-    <description>Chocolatey AutoUpdater NT-Service
-      install via
-      sc.exe create Chocolatey.AutoUpdater binpath= "C:\Program Files\Chocolatey.AutoUpdater\Chocolatey.AutoUpdater.exe" start= auto DisplayName= Chocolatey.AutoUpdater</description>
-    <tags>Chocolatey AutoUpdater</tags>
+    <description>#Chocolatey AutoUpdater NT-Service
+
+      ## install via
+      
+      sc.exe create Chocolatey.AutoUpdater binpath= "C:\Program Files\Chocolatey.AutoUpdater\Chocolatey.AutoUpdater.exe" start= auto DisplayName= Chocolatey.AutoUpdater
+  </description>
+    <tags>Chocolatey AutoUpdater admin</tags>
     <copyright>(c) 2017</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes></releaseNotes>

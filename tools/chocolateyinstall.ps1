@@ -10,23 +10,17 @@ Write-Output $url
 try {
    sc.exe stop Chocolatey-AutoUpdater.exe
 } catch {
-  Write-ChocolateyFailure $packageName $($_.Exception.Message)
+  Write-ChocolateySuccess $packageName $($_.Exception.Message)
 }
-
-try {
-    Install-ChocolateyPackage -PackageName "$packageName" `
+Install-ChocolateyPackage -PackageName "$packageName" `
                           -FileType "$installerType" `
                           -SilentArgs "$silentArgs" `
                           -Url "$url" `
                           -ValidExitCodes $validExitCodes `
                           -ChecksumType "$checksumType"
-} catch {
-  Write-ChocolateyFailure $packageName $($_.Exception.Message)
-  throw
-}
 
 try {
    sc.exe start Chocolatey-AutoUpdater.exe
 } catch {
-  Write-ChocolateyFailure $packageName $($_.Exception.Message)
+  Write-ChocolateySuccess $packageName $($_.Exception.Message)
 }
