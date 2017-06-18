@@ -55,7 +55,7 @@ namespace Chocolatey.AutoUpdater.Components
 
         private string GetArgments()
         {
-            if (string.IsNullOrWhiteSpace(_config.ProxyUrl))
+            if (!string.IsNullOrWhiteSpace(_config.ProxyUrl))
             {
                 var proxyCommand = $@"--proxy=""{_config.ProxyUrl}""";
                 return String.Format(" {0} upgrade all -y ", proxyCommand);
