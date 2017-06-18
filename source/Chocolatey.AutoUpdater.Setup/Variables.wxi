@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
   <?define ProductName = "Chocolatey.AutoUpdater"?>
-  <?define ProductVersion = "1.0.0"?>
+  <?define ProductVersion = "1.0.1"?>
   <?define ManufacturerName = "somafu sandbox"?>
   <?define ManufacturerUrl = "http://sandbox.somafu.com"?>
   <?define ApplicationExe = "Chocolatey.AutoUpdater.exe"?>
