@@ -3,7 +3,7 @@
   <metadata>
     <id>Chocolatey-AutoUpdater</id>
     <title>Chocolatey-AutoUpdater</title>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>andre</authors>
     <owners>andre</owners>
     <projectUrl>https://github.com/andre-hub/Chocolatey-AutoUpdater/</projectUrl>
