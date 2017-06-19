@@ -23,16 +23,22 @@ namespace Chocolatey.AutoUpdater.Components
             try
             {
                 proc.Start();
-                proc.BeginErrorReadLine();
                 proc.ErrorDataReceived += ErrorDataReceived;
+                proc.OutputDataReceived += OutputDataReceived;
                 logger.Debug("Wait for Run");
-                proc.WaitForExit();
+                proc.WaitForExit(_config.WaitForExit);
             }
             catch (Exception ex)
             {
                 logger.Error("", ex.ToString());
             }
             logger.Debug("Finish");
+        }
+
+        private void OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(e.Data))
+                logger.Debug("Output from chocolatey: ", e.Data);
         }
 
         private void ErrorDataReceived(object sender, DataReceivedEventArgs e)
@@ -48,7 +54,7 @@ namespace Chocolatey.AutoUpdater.Components
             startInfo.CreateNoWindow = true;
             startInfo.UseShellExecute = false;
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.RedirectStandardOutput = false;
+            startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = true;
             return startInfo;
         }

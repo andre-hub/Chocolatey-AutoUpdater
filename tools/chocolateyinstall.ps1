@@ -10,7 +10,7 @@ Write-Output $url
 try {
    sc.exe stop Chocolatey-AutoUpdater.exe
 } catch {
-  Write-ChocolateySuccess $packageName $($_.Exception.Message)
+    # ignore start / stop from service
 }
 Install-ChocolateyPackage -PackageName "$packageName" `
                           -FileType "$installerType" `
@@ -20,7 +20,7 @@ Install-ChocolateyPackage -PackageName "$packageName" `
                           -ChecksumType "$checksumType"
 
 try {
-   sc.exe start Chocolatey-AutoUpdater.exe
+    sc.exe start Chocolatey-AutoUpdater.exe
 } catch {
-  Write-ChocolateySuccess $packageName $($_.Exception.Message)
+    # ignore start / stop from service
 }

@@ -24,5 +24,7 @@ namespace Chocolatey.AutoUpdater.Configuration
 
             }
         }
+
+        public int WaitForExit => ParseInt(x => x.WaitForExit);
     }
 }
