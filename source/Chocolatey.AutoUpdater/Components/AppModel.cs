@@ -24,6 +24,8 @@ namespace Chocolatey.AutoUpdater.Components
             {
                 proc.ErrorDataReceived += ErrorDataReceived;
                 proc.OutputDataReceived += OutputDataReceived;
+                proc.BeginErrorReadLine();
+                proc.BeginOutputReadLine();
                 proc.Start();
                 logger.Debug("Wait for Run");
                 proc.WaitForExit(_config.WaitForExit);
