@@ -22,9 +22,9 @@ namespace Chocolatey.AutoUpdater.Components
             proc.StartInfo = FillProcessStartInfo(GetArgments(), proc.StartInfo, _config.ChocolateyPath);
             try
             {
-                proc.Start();
                 proc.ErrorDataReceived += ErrorDataReceived;
                 proc.OutputDataReceived += OutputDataReceived;
+                proc.Start();
                 logger.Debug("Wait for Run");
                 proc.WaitForExit(_config.WaitForExit);
             }

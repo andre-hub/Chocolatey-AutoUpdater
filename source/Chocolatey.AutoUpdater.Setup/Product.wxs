@@ -5,14 +5,13 @@
            Name="$(var.ProductName)" 
            Language="1033" 
            Codepage="utf-8"
-           Version="1.0.0.0"
+           Version="$(var.ProductVersion)"
            Manufacturer="$(var.ManufacturerName)" 
            UpgradeCode="$(var.UpgradeCode)">
     
     <Package InstallerVersion="200" 
              Compressed="yes" 
-             InstallScope="perMachine"
-             Platforms="$(var.Platform)" />
+             InstallScope="perMachine" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <MediaTemplate EmbedCab="yes" />
@@ -27,15 +26,18 @@
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)" />
       </Directory>
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER64" Name="$(var.ProductName)" />
+      </Directory>
     </Directory>
   </Fragment>
 
   <Fragment>
-    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER64">
       <Component Id="ProductComponent" Guid="3e8ea35b-f3fd-4ef1-9311-b852be2e0596">
         <File Id="$(var.ApplicationExe)" Source="$(var.SourcePath)\$(var.ApplicationExe)" KeyPath="yes" Checksum="yes"/>
-        <File Id="$(var.ApplicationExe).config" Source="$(var.SourcePath)\$(var.ApplicationExe).config" KeyPath="false" Checksum="yes"/>
-        <File Id="NLog.dll" Source="$(var.SourcePath)\NLog.dll" KeyPath="false" Checksum="yes"/>
+        <File Id="$(var.ApplicationExe).config" Source="$(var.SourcePath)\$(var.ApplicationExe).config" KeyPath="no" Checksum="yes"/>
+        <File Id="NLog.dll" Source="$(var.SourcePath)\NLog.dll" KeyPath="no" Checksum="yes"/>
       </Component>
     </ComponentGroup>
   </Fragment>

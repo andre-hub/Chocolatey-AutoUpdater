@@ -8,7 +8,7 @@ $validExitCodes = @(0)
 Write-Output $url
 
 try {
-   sc.exe stop Chocolatey-AutoUpdater.exe
+   sc.exe stop Chocolatey-AutoUpdater
 } catch {
     # ignore start / stop from service
 }
@@ -20,7 +20,7 @@ Install-ChocolateyPackage -PackageName "$packageName" `
                           -ChecksumType "$checksumType"
 
 try {
-    sc.exe start Chocolatey-AutoUpdater.exe
+    sc.exe start Chocolatey-AutoUpdater
 } catch {
     # ignore start / stop from service
 }

@@ -16,8 +16,8 @@
     <description>#Chocolatey AutoUpdater NT-Service
 
       ## install via
-      
-      sc.exe create Chocolatey.AutoUpdater binpath= "C:\Program Files\Chocolatey.AutoUpdater\Chocolatey.AutoUpdater.exe" start= auto DisplayName= Chocolatey.AutoUpdater
+
+      sc.exe create Chocolatey-AutoUpdater binpath= "C:\Program Files\Chocolatey.AutoUpdater\Chocolatey.AutoUpdater.exe" start= auto DisplayName= Chocolatey-AutoUpdater
   </description>
     <tags>Chocolatey AutoUpdater admin</tags>
     <copyright>(c) 2017</copyright>
